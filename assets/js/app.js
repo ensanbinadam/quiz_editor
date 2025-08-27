@@ -1,4 +1,3 @@
-/* ================== إعدادات عامة وأدوات ================== */
 var LS_KEY = window.LS_KEY || 'math_questions_v1';
 const VERSION_TAG = 'v8-final';               // تأكد من رقم الإصدار
 const BASE_NAME   = 'math_questions';
