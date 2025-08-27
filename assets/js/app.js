@@ -2,7 +2,7 @@
 'use strict';
 
 /* ================== إعدادات عامة وأدوات ================== */
-const LS_KEY = 'math_questions_v1';
+var LS_KEY = window.LS_KEY || 'math_questions_v1';
 const VERSION_TAG = 'v8-final';               // تأكد من رقم الإصدار
 const BASE_NAME   = 'math_questions';
 const DATE_TAG = () => {
