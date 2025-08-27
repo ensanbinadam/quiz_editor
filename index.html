@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>محرر أسئلة الرياضيات المتقدّم (v8-final)</title>
+
+  <!-- KaTeX -->
+  <!-- ORIGINAL: <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"> --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" data-fallback="assets/vendor/cdn.jsdelivr.net-npm-katex_0.16.10-dist-katex.min.756eb65d.css">
+  <!-- ORIGINAL: <script src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"></script> --><script src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" onerror="this.onerror=null;this.src='assets/vendor/cdn.jsdelivr.net-npm-katex_0.16.10-dist-katex.min.ae39a687.js'"></script>
+
+  <!-- Quill 1.3.7 -->
+  <!-- ORIGINAL: <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet"> --><link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet" data-fallback="assets/vendor/cdn.quilljs.com-1.3.7-quill.snow.ae240396.css">
+  <!-- ORIGINAL: <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script> --><script src="https://cdn.quilljs.com/1.3.7/quill.min.js" onerror="this.onerror=null;this.src='assets/vendor/cdn.quilljs.com-1.3.7-quill.min.7eccb083.js'"></script>
+
+  <!-- ORIGINAL: <script src="https://cdn.jsdelivr.net/npm/mammoth@1.6.0/mammoth.browser.min.js"></script> --><script src="https://cdn.jsdelivr.net/npm/mammoth@1.6.0/mammoth.browser.min.js" onerror="this.onerror=null;this.src='assets/vendor/cdn.jsdelivr.net-npm-mammoth_1.6.0-mammoth.browser.min.93f4c7c1.js'"></script>
+
+  <!-- DOMPurify -->
+  <!-- ORIGINAL: <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script> --><script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" onerror="this.onerror=null;this.src='assets/vendor/cdn.jsdelivr.net-npm-dompurify_3.1.6-dist-purify.min.52acb203.js'"></script>
+
+  <!-- Font Awesome -->
+  <!-- ORIGINAL: <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" data-fallback="assets/vendor/cdnjs.cloudflare.com-ajax-libs-font-awesome-6.5.2-css-all.min.3c3af36d.css">
+
+  <!-- docx -->
+  <!-- ORIGINAL: <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script> --><script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js" onerror="this.onerror=null;this.src='assets/vendor/cdn.jsdelivr.net-npm-docx_8.5.0-build-index.umd.2cb5f08.js'"></script>
+
+  
+<link rel="stylesheet" href="assets/css/styles.css" data-splitter="1"><script data-splitter="1" data-splitter-hook="css">(function(){
+  function hook(){
+    document.querySelectorAll('link[rel="stylesheet"][data-fallback]').forEach(function(l){
+      l.addEventListener('error', function(){
+        var alt=document.createElement('link'); alt.rel='stylesheet'; alt.href=l.getAttribute('data-fallback');
+        document.head.appendChild(alt);
+      }, {once:true});
+    });
+    window.addEventListener('load', function(){ setTimeout(function(){
+      document.querySelectorAll('link[rel="stylesheet"][data-fallback]').forEach(function(l){
+        var ok=true; try{ ok=!!l.sheet; }catch(e){}
+        if(!ok){ var alt=document.createElement('link'); alt.rel='stylesheet'; alt.href=l.getAttribute('data-fallback'); document.head.appendChild(alt); }
+      });
+    },700); });
+  }
+  if(document.readyState!=='loading') hook(); else document.addEventListener('DOMContentLoaded', hook);
+})();</script></head>
+<body>
+  <div class="app-container">
+    <header>
+      <div class="header-content">
+        <div class="logo">
+          <div class="logo-icon"><i class="fas fa-square-root-variable"></i></div>
+          <div class="logo-text">
+            <h1>محرر أسئلة الرياضيات المتقدّم</h1>
+            <p>دعم LaTeX (KaTeX) + تصدير/استيراد متوافق مع العارض</p>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span id="lastSavedPill" class="save-pill">آخر حفظ: —</span>
+          <button class="btn btn-quiet" id="newProjectBtn"><i class="fas fa-file-circle-plus"></i> مشروع جديد</button>
+          <button class="btn btn-outline" id="importBtn"><i class="fas fa-file-import"></i> استيراد JSON</button>
+          <input id="importFiles" accept=".json" style="display:none" type="file" multiple="">
+        </div>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h3 class="sidebar-title">الأسئلة</h3>
+          <div class="sidebar-actions">
+            <button id="addQuestionBtn" class="btn btn-quiet"><i class="fas fa-plus"></i> إضافة</button>
+          </div>
+        </div>
+        <div id="qList" class="q-list"></div>
+      </aside>
+
+      <main class="editor-container">
+        <div class="section">
+          <div class="section-title"><div class="section-icon"><i class="fas fa-book-reader"></i></div><h3>النص القرائي</h3></div>
+          <!-- HINT: clean & responsive -->
+          <div class="hint-block" dir="rtl">
+            <div class="hint-lead">اكتب نصا عاديا/هتمل/معادلات:</div>
+         
+              <span class="item" role="listitem">
+                          </span></div>
+         
+          <div class="editor-row">
+            <div class="editor-col">
+              <label class="editor-label">النص القرائي:</label>
+              <div id="readingTextEditor" class="text-editor"></div>
+              <div class="math-toolbar" style="margin:.5rem 0">
+                <button class="btn btn-quiet btn-sm" id="btnInlineFormula">معادلة سطرية</button>
+                <button class="btn btn-quiet btn-sm" id="btnBlockFormula">معادلة عرضية</button>
+              </div>
+            </div>
+            <div class="editor-col">
+              <label class="editor-label">الصورة:</label>
+              <div class="image-upload">
+                <div class="image-preview-container" id="readingDropZone">
+                  <img id="readingImagePreview" class="image-preview" alt="معاينة الصورة">
+                  <button id="readingRemoveBtn" class="delete-image-btn" style="display:none"><i class="fas fa-trash"></i> حذف الصورة</button>
+                </div>
+                <div class="image-actions">
+                  <button class="btn" id="readingUploadBtn"><i class="fas fa-upload"></i> تحميل صورة</button>
+                  <button class="btn" id="readingPasteBtn"><i class="fas fa-paste"></i> لصق صورة</button>
+                </div>
+              </div>
+              <input id="readingImageUpload" accept="image/*" style="display:none" type="file">
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title"><div class="section-icon"><i class="fas fa-question-circle"></i></div><h3>السؤال</h3></div>
+          <div class="editor-row">
+            <div class="editor-col">
+              <label class="editor-label">نص السؤال:</label>
+              <div id="questionTextEditor" class="text-editor"></div>
+              <div class="math-toolbar" style="margin:.5rem 0">
+                <button type="button" id="qMathInline" class="btn btn-quiet btn-sm">معادلة سطرية</button>
+                <button type="button" id="qMathDisplay" class="btn btn-quiet btn-sm">معادلة عرضية</button>
+              </div>
+            </div>
+            <div class="editor-col">
+              <label class="editor-label">صورة السؤال:</label>
+              <div class="image-upload">
+                <div class="image-preview-container" id="questionDropZone">
+                  <img id="questionImagePreview" class="image-preview" alt="معاينة الصورة">
+                  <button id="questionRemoveBtn" class="delete-image-btn" style="display:none"><i class="fas fa-trash"></i> حذف الصورة</button>
+                </div>
+                <div class="image-actions">
+                  <button class="btn" id="questionUploadBtn"><i class="fas fa-upload"></i> تحميل صورة</button>
+                  <button class="btn" id="questionPasteBtn"><i class="fas fa-paste"></i> لصق صورة</button>
+                </div>
+              </div>
+              <input id="questionImageUpload" accept="image/*" style="display:none" type="file">
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title"><div class="section-icon"><i class="fas fa-list-ol"></i></div><h3>خيارات الإجابة</h3></div>
+          <div id="optionsContainer"></div>
+          <button id="addOptionBtn" class="btn btn-quiet" style="margin-top:8px"><i class="fas fa-plus"></i> إضافة خيار جديد</button>
+          <div class="correct-option">
+            <label class="editor-label">الإجابة الصحيحة:</label>
+            <select id="correctOptionSelect" class="btn" style="background:#e9ecef;border:1px solid #ced4da;padding:8px 14px"></select>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div class="import-export">
+      <h3 style="text-align:center;margin-top:0;color:var(--secondary)">استيراد وتصدير البيانات</h3>
+
+      <textarea id="jsonEditor" class="json-editor" placeholder="هنا للصق JSON يدويًا (اختياري)"></textarea>
+
+      <div class="io-toolbar" style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin:16px 0">
+        <div class="io-group" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <button id="exportWordOpen" class="btn btn-warning">
+            <i class="fas fa-file-word"></i> تصدير Word (خيارات)
+          </button>
+          <button id="exportJsonOpen" class="btn btn-primary">
+            <i class="fas fa-file-export"></i> تصدير JSON (خيارات)
+          </button>
+        </div>
+
+        <div class="io-group" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <button id="clearJsonBtn" class="btn btn-quiet">
+            <i class="fas fa-eraser"></i> مسح المحتوى
+          </button>
+          <button id="importJsonBtn" class="btn btn-primary">
+            <i class="fas fa-file-import"></i> استيراد من JSON (يدوي)
+          </button>
+        </div>
+      </div>
+
+      <footer dir="rtl" style="text-align:center; font-family: inherit;">
+        <p>
+          برمجة :
+          <a href="https://t.me/ITG_KSA" target="_blank" rel="noopener">
+            ملتقى التعليم التفاعلي | Interactive Teaching Group (ITG)
+          </a>
+        </p>
+        <p>محرر أسئلة الرياضيات المتقدّم | 2025</p>
+      </footer>
+    </div>
+  </div>
+
+  <div class="notification" id="notification">
+    <i class="fas fa-check-circle"></i>
+    <span id="notificationText"></span>
+  </div>
+
+  <!-- Modal: خيارات تصدير Word -->
+  <div id="exportModal" class="modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="exportModalTitle">
+      <div class="modal-header">
+        <h3 id="exportModalTitle" style="margin:0">خيارات تصدير Word</h3>
+        <button id="closeExportModal" class="btn btn-sm" aria-label="إغلاق"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="row hint">سيتم إنشاء <strong>جدول مستقل لكل سؤال</strong> من <strong>5 صفوف</strong> بعرض أعمدة متساوية.</div>
+        <div class="modal-grid">
+          <label class="field"><span><input type="checkbox" id="optIncludeCover"> تضمين غلاف (عنوان/وصف)</span></label>
+          <label class="field"><span><input type="checkbox" id="optPageBreak"> فاصل صفحة بين الأسئلة</span></label>
+          <label class="field"><span><input type="checkbox" id="optShowStar" checked=""> نجمة تحت الإجابة الصحيحة</span></label>
+          <label class="field"><span><input type="checkbox" id="optIncludeImages" checked=""> تضمين الصور كلها</span></label>
+          <label class="field"><span><input type="checkbox" id="optEqualCols" checked=""> فرض تساوي أعمدة الخيارات</span></label>
+          <label class="field"><span><input type="checkbox" id="optRtlTables" checked=""> اتجاه الجداول (يمين ← يسار)</span></label>
+
+          <label class="field"><span>محاذاة الجدول</span>
+            <select id="optTableAlign">
+              <option value="right">يمين</option>
+              <option value="center">وسط</option>
+              <option value="left">يسار</option>
+            </select>
+          </label>
+
+          <label class="field"><span>المسافة بين الجداول (px)</span>
+            <input type="number" id="optTableGap" min="0" value="16">
+          </label>
+
+          <label class="field"><span>تسمية الخيارات</span>
+            <select id="optOptionLabels">
+              <option value="none">بدون</option>
+              <option value="digits">١ - ٢ - ٣ - ٤</option>
+              <option value="letters">أ - ب - ج - د</option>
+            </select>
+          </label>
+
+          <label class="field"><span>عنوان الغلاف</span>
+            <input type="text" id="optCoverTitle" placeholder="مثال: بنك أسئلة الوحدة">
+          </label>
+          <label class="field" style="grid-column:1/3"><span>وصف الغلاف (اختياري)</span>
+            <textarea id="optCoverDesc" rows="2" placeholder="مثال: الصف الثالث • مادة ..."></textarea>
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="exportWordBtn" class="btn btn-primary">
+          <i class="fas fa-file-word"></i> تصدير Word (بسيط .doc)
+        </button>
+        <button id="exportDocxBtn" class="btn btn-warning">
+          <i class="fas fa-file-export"></i> تصدير Word (متقدّم .docx)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: خيارات تصدير JSON -->
+  <div id="jsonModal" class="modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="jsonModalTitle">
+      <div class="modal-header">
+        <h3 id="jsonModalTitle" style="margin:0">خيارات تصدير JSON</h3>
+        <button id="closeJsonModal" class="btn btn-sm" aria-label="إغلاق"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-grid">
+          <label class="field"><span>التنسيق</span>
+            <select id="jsonFormat">
+              <option value="plain">نص عادي (يوصى به)</option>
+              <option value="html">HTML (يحافظ على التنسيق)</option>
+            </select>
+          </label>
+          <label class="field"><span><input type="checkbox" id="jsonIncludeImages" checked=""> تضمين الصور Base64</span>
+            <span class="hint">إلغاء التحديد لتقليل حجم الملف.</span>
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="exportJsonBtn" class="btn btn-primary"><i class="fas fa-file-export"></i> تصدير JSON الآن</button>
+      </div>
+    </div>
+  </div>
+
+<!-- Modal: الاستيراد (JSON + Word tabs) -->
+<div id="importModal" class="modal" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="importModalTitle">
+    <div class="modal-header">
+      <h3 id="importModalTitle" style="margin:0">الاستيراد</h3>
+      <button id="closeImportModal" class="btn btn-sm" aria-label="إغلاق"><i class="fas fa-times"></i></button>
+
+      <!-- أزرار التبويب -->
+      <div style="display:flex; gap:8px; margin-inline-start:auto">
+        <button class="btn imp-tab-btn active" data-target="#impJsonTab">
+          <i class="fas fa-code"></i> استيراد JSON
+        </button>
+        <button class="btn imp-tab-btn" data-target="#impWordTab">
+          <i class="fas fa-file-word"></i> استيراد Word
+        </button>
+      </div>
+    </div>
+
+    <div class="modal-body">
+      <!-- تبويب JSON -->
+      <div id="impJsonTab" class="imp-tab" style="display:block">
+        <div class="field">
+          <span>وضع الاستيراد</span>
+          <div class="radio-row">
+            <label><input type="radio" name="importMode" value="append" checked=""> دمج مع الحالية</label>
+            <label><input type="radio" name="importMode" value="replace"> استبدال الكل</label>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:8px">
+          <label style="display:flex;align-items:center;gap:8px">
+            <input type="checkbox" id="reviewBeforeImport" checked="">
+            <span>عرض الإحصائية قبل الدمج</span>
+          </label>
+        </div>
+
+        <div class="row"><hr></div>
+
+        <div class="modal-grid">
+          <div class="field">
+            <span>استيراد من ملفات (يمكن اختيار أكثر من ملف)</span>
+            <div>
+              <button id="chooseImportFiles" class="btn"><i class="fas fa-folder-open"></i> اختر ملفات JSON</button>
+              <div id="importFilesList" class="file-list" style="margin-top:8px;font-size:.9rem;color:#374151"></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <span>أو استيراد باللصق (اختياري)</span>
+            <textarea id="importTextArea" rows="8" placeholder="الصق هنا مصفوفة JSON للأسئلة، مثل:
+[
+  { &quot;reading&quot;: {&quot;text&quot;:&quot;...&quot;}, &quot;question&quot;: {&quot;text&quot;:&quot;...&quot;}, &quot;options&quot;:[...], &quot;correct&quot;: 2 },
+  ...
+]"></textarea>
+          </div>
+        </div>
+
+        <div class="hint">يمكن الجمع بين الطريقتين: الملفات + النص الملصوق سيتم تجميعهما حسب وضع الاستيراد.</div>
+      </div>
+
+      <!-- تبويب Word (منقول إلى داخل المودال) -->
+      <div id="impWordTab" class="imp-tab" style="display:none">
+        <div class="hint" style="margin:0 0 8px;color:#555">
+          يدعم ملفات .docx (Mammoth) وملفات .doc (HTML بسيط مُصدّر من أداتك).
+        </div>
+
+        <!-- اختيار الملفات -->
+        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap">
+          <button class="btn" id="wordChooseFilesBtn">
+            <i class="fas fa-folder-open"></i> اختر ملفات Word
+          </button>
+          <input id="wordFiles" type="file" accept=".doc,.docx" style="display:none" multiple="">
+          <div id="wordFilesList" style="display:flex;gap:6px;flex-wrap:wrap"></div>
+        </div>
+
+        <!-- إعدادات عامة -->
+        <div style="margin-top:14px; display:flex; gap:16px; align-items:center; flex-wrap:wrap">
+          <label><input type="radio" name="wordImportMode" value="append" checked=""> دمج مع الحالية</label>
+          <label><input type="radio" name="wordImportMode" value="replace"> استبدال الكل</label>
+          <label><input type="checkbox" id="wordReviewBeforeImport" checked=""> مراجعة قبل الدمج</label>
+          <label>صفوف لكل سؤال: <input type="number" id="wp_rowsPerQuestion" value="5" min="1" max="20" style="width:80px"></label>
+          <label>بحث نجمة لاحقة: <input type="number" id="wp_lookahead" value="3" min="0" max="10" style="width:80px"></label>
+        </div>
+
+        <!-- إزالة الخلفية (اختياري) -->
+        <details style="margin-top:10px">
+          <summary>🖼️ إزالة خلفية الصور (اختياري)</summary>
+          <div style="margin-top:10px; display:flex; gap:12px; flex-wrap:wrap; align-items:center">
+            <label><input type="checkbox" id="wp_bg_enable"> تفعيل</label>
+            <label>النمط:
+              <select id="wp_bg_preset">
+                <option value="safe">محافظة</option>
+                <option value="balanced" selected="">متوازنة</option>
+                <option value="strong">قوية</option>
+              </select>
+            </label>
+            <label>الداخلي: <input type="number" id="wp_bg_inner" value="18" min="0" max="80" style="width:80px"></label>
+            <label>الخارجي: <input type="number" id="wp_bg_outer" value="38" min="1" max="100" style="width:80px"></label>
+            <label>SS: <input type="number" id="wp_bg_ss" value="2" min="1" max="3" style="width:80px"></label>
+            <label>Blur(px): <input type="number" id="wp_bg_blurR" value="1" min="0" max="3" style="width:80px"></label>
+            <label>Passes: <input type="number" id="wp_bg_blurP" value="2" min="0" max="3" style="width:80px"></label>
+          </div>
+        </details>
+
+        <!-- إحداثيات الالتقاط -->
+        <details style="margin-top:12px" open="">
+          <summary>📍 إحداثيات الخلايا</summary>
+          <div style="margin-top:8px">
+            <table class="config-table">
+              <thead><tr><th>📘 نص قرائي</th><th>🖼️ صورة النص</th><th>❓ سؤال</th><th>🖼️ صورة السؤال</th></tr></thead>
+              <tbody><tr>
+                <td><input type="number" id="wp_r_reading" value="1" min="1"> <input type="number" id="wp_c_reading" value="1" min="1"></td>
+                <td><input type="number" id="wp_r_reading_img" value="1" min="1"> <input type="number" id="wp_c_reading_img" value="2" min="1"></td>
+                <td><input type="number" id="wp_r_question" value="2" min="1"> <input type="number" id="wp_c_question" value="1" min="1"></td>
+                <td><input type="number" id="wp_r_question_img" value="2" min="1"> <input type="number" id="wp_c_question_img" value="2" min="1"></td>
+              </tr></tbody>
+            </table>
+
+            <h4 style="margin-top:12px">🧭 نصوص الخيارات</h4>
+            <table class="config-table">
+              <thead><tr><th>①</th><th>②</th><th>③</th><th>④</th></tr></thead>
+              <tbody><tr>
+                <td><input type="number" id="wp_r_opt1" value="3" min="1"> <input type="number" id="wp_c_opt1" value="1" min="1"></td>
+                <td><input type="number" id="wp_r_opt2" value="3" min="1"> <input type="number" id="wp_c_opt2" value="2" min="1"></td>
+                <td><input type="number" id="wp_r_opt3" value="4" min="1"> <input type="number" id="wp_c_opt3" value="1" min="1"></td>
+                <td><input type="number" id="wp_r_opt4" value="4" min="1"> <input type="number" id="wp_c_opt4" value="2" min="1"></td>
+              </tr></tbody>
+            </table>
+
+            <h4 style="margin-top:12px">🖼️ صور الخيارات</h4>
+            <table class="config-table">
+              <thead><tr><th>①</th><th>②</th><th>③</th><th>④</th></tr></thead>
+              <tbody><tr>
+                <td><input type="number" id="wp_r_opt1_img" value="3" min="1"> <input type="number" id="wp_c_opt1_img" value="3" min="1"></td>
+                <td><input type="number" id="wp_r_opt2_img" value="3" min="1"> <input type="number" id="wp_c_opt2_img" value="4" min="1"></td>
+                <td><input type="number" id="wp_r_opt3_img" value="4" min="1"> <input type="number" id="wp_c_opt3_img" value="3" min="1"></td>
+                <td><input type="number" id="wp_r_opt4_img" value="4" min="1"> <input type="number" id="wp_c_opt4_img" value="4" min="1"></td>
+              </tr></tbody>
+            </table>
+
+            <div style="text-align:center;margin-top:10px">
+              <button class="btn" id="wp_reset">🔄 إعادة تعيين الإحداثيات</button>
+            </div>
+          </div>
+        </details>
+
+        <!-- زر التشغيل -->
+        <div style="margin-top:14px; display:flex; gap:10px; align-items:center">
+          <button class="btn btn-primary" id="wordImportRunBtn">
+            <i class="fas fa-magic"></i> تحويل &amp; استعراض
+          </button>
+          <span class="hint" style="color:#6b7280">ستفتح شاشة المراجعة نفسها (الإحصائيات + خيار تجاهل الصور غير المضمّنة)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- تذييل المودال: خاص بتبويب JSON -->
+    <div class="modal-footer">
+      <button id="doImportBtn" class="btn btn-primary"><i class="fas fa-file-import"></i> استيراد الآن</button>
+    </div>
+  </div>
+</div>
+
+  <!-- Modal: مراجعة الاستيراد (إحصائية + مشاكل) -->
+  <div id="importReviewModal" class="modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="importReviewTitle">
+      <div class="modal-header">
+        <h3 id="importReviewTitle" style="margin:0">مراجعة الاستيراد</h3>
+        <button id="closeImportReview" class="btn btn-sm" aria-label="إغلاق"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="row hint" style="margin-top:0">
+          تم تحليل الملفات الملحقة. راجع الإحصائية التالية قبل الدمج.
+        </div>
+
+        <div id="revStatsBox" class="field" style="gap:4px"></div>
+
+        <div class="row"><hr></div>
+
+        <div class="field">
+          <strong>ملاحظات/تحذيرات:</strong>
+          <div id="revIssuesBox" class="hint" style="line-height:1.7"></div>
+        </div>
+
+        <div class="row"><hr></div>
+
+        <label class="field" style="gap:6px">
+          <span><input type="checkbox" id="revStripExternal" checked=""> تجاهل أي صور غير مضمنة Base64 (تمنع أخطاء التصدير)</span>
+          <span class="hint">يُنصح بتركه مُفعّلًا. الصور "http/https/blob/file" سيتم إسقاطها أثناء الدمج.</span>
+        </label>
+      </div>
+      <div class="modal-footer">
+        <button id="cancelImportBtn" class="btn btn-quiet"><i class="fas fa-ban"></i> إلغاء</button>
+        <button id="confirmImportBtn" class="btn btn-primary"><i class="fas fa-file-import"></i> استيراد الآن</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Busy Overlay -->
+  <div id="busyOverlay" class="busy-overlay" aria-hidden="true">
+    <div class="busy-card">
+      <div class="spinner" aria-hidden="true"></div>
+      <div id="busyText">جارٍ المعالجة...</div>
+    </div>
+  </div>
+
+  <!-- Issue Toolbar -->
+  <div id="issueToolbar" class="issue-toolbar">
+    <span class="issue-count" id="issueCount">0 مشاكل</span>
+    <button class="btn btn-sm btn-quiet" id="prevIssueBtn"><i class="fas fa-chevron-right"></i> السابق</button>
+    <button class="btn btn-sm btn-quiet" id="nextIssueBtn">التالي <i class="fas fa-chevron-left"></i></button>
+    <button class="btn btn-sm btn-quiet" id="dismissIssueBtn">تجاهل</button>
+    <button class="btn btn-sm btn-quiet" id="showAllIssuesBtn">إظهار الكل</button>
+  </div>
+
+
+   <div id="importReviewModal" class="modal" aria-hidden="true">
+   <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="importReviewTitle">
+    <div class="modal-header">
+      <h3 id="importReviewTitle" style="margin:0">مراجعة الاستيراد</h3>
+      <button id="revCloseBtn" class="btn btn-sm" aria-label="إغلاق"><i class="fas fa-times"></i></button>
+    </div>
+
+    <div class="modal-body">
+      <div class="hint" style="margin:6px 0 12px">
+        سيُعرض ملخّص للأسئلة المكتشفة وفق القواعد الجديدة. يمكنك الاستمرار أو الإلغاء.
+      </div>
+
+      <div class="field" style="margin:8px 0 12px">
+        <label style="display:flex;align-items:center;gap:8px">
+          <input type="checkbox" id="revStripExternal" checked="">
+          <span>تجاهل الصور غير المرمّزة (ليست Base64) تلقائيًا</span>
+        </label>
+        <div class="hint">القواعد: النص القرائي اختياري؛ السؤال لازم يكون له نص أو صورة؛ الخيارات 2–4 وكل خيار يكون فيه نص أو صورة؛ الصور غير المرمّزة مشكلة.</div>
+      </div>
+
+      <div class="row" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="box" style="border:1px solid #e5e7eb;border-radius:12px;padding:12px">
+          <h4 style="margin:0 0 8px 0">إحصائية</h4>
+          <div id="revStatsBox" style="line-height:1.8"></div>
+        </div>
+        <div class="box" style="border:1px solid #e5e7eb;border-radius:12px;padding:12px">
+          <h4 style="margin:0 0 8px 0">ملاحظات</h4>
+          <div id="revIssuesBox" style="line-height:1.8"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button id="revCancelBtn" class="btn">إلغاء</button>
+      <button id="revContinueBtn" class="btn btn-primary"><i class="fas fa-check"></i> استمرار الاستيراد</button>
+    </div>
+  </div>
+</div>
+
+
+<script src="assets/js/app.js" defer="" data-splitter="1"></script></body></html>
