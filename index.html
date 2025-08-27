@@ -1,50 +1,74 @@
-<!DOCTYPE html>
-<html dir="rtl" lang="ar"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>محرر أسئلة الرياضيات المتقدّم (v8-final)</title>
 
+  <!-- Favicon (أيقونة في الجذر بجانب index.html) -->
+  <link rel="icon" href="favicon.ico?v=1" sizes="any">
+  <!-- إن كانت عندك PNG/Apple أضفها لاحقًا، وإلا اترك السطر أعلاه فقط -->
+
+  <!-- ===== CSS من CDN + بديل محلي تلقائي ===== -->
+  <!-- KaTeX CSS -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"
+        data-fallback="assets/css/cdn.jsdelivr.net-npm-katex_0.16.10-dist-katex.min.756eb65d.css">
+
+  <!-- Quill CSS -->
+  <link rel="stylesheet"
+        href="https://cdn.quilljs.com/1.3.7/quill.snow.css"
+        data-fallback="assets/css/cdn.quilljs.com-1.3.7-quill.snow.ae240396.css">
+
+  <!-- Font Awesome CSS -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        data-fallback="assets/css/cdnjs.cloudflare.com-ajax-libs-font-awesome-6.5.2-css-all.min.3c3af36d.css">
+
+  <!-- CSS الخاص بك -->
+  <link rel="stylesheet" href="assets/css/styles.css?v=1">
+
+  <!-- هوك بسيط: لو فشل CDN للـCSS يحمّل النسخة المحلية -->
+  <script>
+  (function(){
+    function ensureFallback(){
+      document.querySelectorAll('link[rel="stylesheet"][data-fallback]').forEach(function(l){
+        var ok = true;
+        try { ok = !!l.sheet && !!l.sheet.cssRules; } catch(e) { ok = false; }
+        if(!ok){
+          var alt = document.createElement('link');
+          alt.rel = 'stylesheet';
+          alt.href = l.getAttribute('data-fallback');
+          document.head.appendChild(alt);
+        }
+      });
+    }
+    window.addEventListener('load', function(){ setTimeout(ensureFallback, 500); });
+  })();
+  </script>
+
+  <!-- ===== JS من CDN + بديل محلي تلقائي (defer) ===== -->
+  <!-- Quill -->
+  <script defer src="https://cdn.quilljs.com/1.3.7/quill.min.js"
+          onerror="this.onerror=null;this.src='assets/vendor/cdn.quilljs.com-1.3.7-quill.min.7eccb083.js'"></script>
+
   <!-- KaTeX -->
-  <!-- ORIGINAL: <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"> --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" data-fallback="assets/vendor/cdn.jsdelivr.net-npm-katex_0.16.10-dist-katex.min.756eb65d.css">
-  <!-- ORIGINAL: <script src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"></script> --><script src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" onerror="this.onerror=null;this.src='assets/vendor/cdn.jsdelivr.net-npm-katex_0.16.10-dist-katex.min.ae39a687.js'"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"
+          onerror="this.onerror=null;this.src='assets/vendor/cdn.jsdelivr.net-npm-katex_0.16.10-dist-katex.min.ae39a687.js'"></script>
 
-  <!-- Quill 1.3.7 -->
-  <!-- ORIGINAL: <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet"> --><link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet" data-fallback="assets/vendor/cdn.quilljs.com-1.3.7-quill.snow.ae240396.css">
-  <!-- ORIGINAL: <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script> --><script src="https://cdn.quilljs.com/1.3.7/quill.min.js" onerror="this.onerror=null;this.src='assets/vendor/cdn.quilljs.com-1.3.7-quill.min.7eccb083.js'"></script>
-
-  <!-- ORIGINAL: <script src="https://cdn.jsdelivr.net/npm/mammoth@1.6.0/mammoth.browser.min.js"></script> --><script src="https://cdn.jsdelivr.net/npm/mammoth@1.6.0/mammoth.browser.min.js" onerror="this.onerror=null;this.src='assets/vendor/cdn.jsdelivr.net-npm-mammoth_1.6.0-mammoth.browser.min.93f4c7c1.js'"></script>
+  <!-- Mammoth -->
+  <script defer src="https://cdn.jsdelivr.net/npm/mammoth@1.6.0/mammoth.browser.min.js"
+          onerror="this.onerror=null;this.src='assets/vendor/cdn.jsdelivr.net-npm-mammoth_1.6.0-mammoth.browser.min.93f4c7c1.js'"></script>
 
   <!-- DOMPurify -->
-  <!-- ORIGINAL: <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script> --><script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" onerror="this.onerror=null;this.src='assets/vendor/cdn.jsdelivr.net-npm-dompurify_3.1.6-dist-purify.min.52acb203.js'"></script>
-
-  <!-- Font Awesome -->
-  <!-- ORIGINAL: <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" data-fallback="assets/vendor/cdnjs.cloudflare.com-ajax-libs-font-awesome-6.5.2-css-all.min.3c3af36d.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"
+          onerror="this.onerror=null;this.src='assets/vendor/cdn.jsdelivr.net-npm-dompurify_3.1.6-dist-purify.min.52acb203.js'"></script>
 
   <!-- docx -->
-  <!-- ORIGINAL: <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script> --><script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js" onerror="this.onerror=null;this.src='assets/vendor/cdn.jsdelivr.net-npm-docx_8.5.0-build-index.umd.2cb5f08.js'"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"
+          onerror="this.onerror=null;this.src='assets/vendor/cdn.jsdelivr.net-npm-docx_8.5.0-build-index.umd.2cb5f08.js'"></script>
 
-  
-<link rel="stylesheet" href="assets/css/styles.css" data-splitter="1"><script data-splitter="1" data-splitter-hook="css">(function(){
-  function hook(){
-    document.querySelectorAll('link[rel="stylesheet"][data-fallback]').forEach(function(l){
-      l.addEventListener('error', function(){
-        var alt=document.createElement('link'); alt.rel='stylesheet'; alt.href=l.getAttribute('data-fallback');
-        document.head.appendChild(alt);
-      }, {once:true});
-    });
-    window.addEventListener('load', function(){ setTimeout(function(){
-      document.querySelectorAll('link[rel="stylesheet"][data-fallback]').forEach(function(l){
-        var ok=true; try{ ok=!!l.sheet; }catch(e){}
-        if(!ok){ var alt=document.createElement('link'); alt.rel='stylesheet'; alt.href=l.getAttribute('data-fallback'); document.head.appendChild(alt); }
-      });
-    },700); });
-  }
-  if(document.readyState!=='loading') hook(); else document.addEventListener('DOMContentLoaded', hook);
-})();</script>
-<link rel="icon" href="favicon.ico?v=1" sizes="any">
-<link rel="shortcut icon" href="favicon.ico?v=1" type="image/x-icon">
+  <!-- سكربتك أنت -->
+  <script defer src="assets/js/app.js?v=1"></script>
 </head>
-
 <body>
   <div class="app-container">
     <header>
