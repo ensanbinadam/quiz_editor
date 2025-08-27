@@ -1,5 +1,7 @@
 /* ===== Bundled by Splitter (local app code) ===== */
-'use strict';
+/* ===== Bundled by Splitter (local app code) ===== */
+;(function(){
+  'use strict';
 
 /* ================== إعدادات عامة وأدوات ================== */
 const LS_KEY = 'math_questions_v1';
@@ -1855,3 +1857,4 @@ function init(){
   showNotification('جاهز: محرر رياضيات مع KaTeX + تصدير متوافق ✅','success');
 }
 document.addEventListener('DOMContentLoaded', init);
+})();
