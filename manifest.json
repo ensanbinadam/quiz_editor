@@ -1,0 +1,431 @@
+{
+  "generatedAt": "2025-09-02T04:27:16.932Z",
+  "files": [
+    {
+      "path": "assets/fonts/KaTeX_AMS-Regular.woff2",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_AMS-Regular.woff2",
+      "size": 28076
+    },
+    {
+      "path": "assets/fonts/KaTeX_AMS-Regular.woff",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_AMS-Regular.woff",
+      "size": 33516
+    },
+    {
+      "path": "assets/fonts/KaTeX_Caligraphic-Bold.woff2",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Caligraphic-Bold.woff2",
+      "size": 6912
+    },
+    {
+      "path": "assets/fonts/KaTeX_AMS-Regular.ttf",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_AMS-Regular.ttf",
+      "size": 63632
+    },
+    {
+      "path": "assets/fonts/KaTeX_Caligraphic-Bold.woff",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Caligraphic-Bold.woff",
+      "size": 7716
+    },
+    {
+      "path": "assets/fonts/KaTeX_Caligraphic-Bold.ttf",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Caligraphic-Bold.ttf",
+      "size": 12368
+    },
+    {
+      "path": "assets/fonts/KaTeX_Caligraphic-Regular.woff",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Caligraphic-Regular.woff",
+      "size": 7656
+    },
+    {
+      "path": "assets/fonts/KaTeX_Caligraphic-Regular.woff2",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Caligraphic-Regular.woff2",
+      "size": 6908
+    },
+    {
+      "path": "assets/fonts/KaTeX_Caligraphic-Regular.ttf",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Caligraphic-Regular.ttf",
+      "size": 12344
+    },
+    {
+      "path": "assets/fonts/KaTeX_Fraktur-Bold.woff2",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Fraktur-Bold.woff2",
+      "size": 11348
+    },
+    {
+      "path": "assets/fonts/KaTeX_Fraktur-Bold.ttf",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Fraktur-Bold.ttf",
+      "size": 19584
+    },
+    {
+      "path": "assets/fonts/KaTeX_Fraktur-Bold.woff",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Fraktur-Bold.woff",
+      "size": 13296
+    },
+    {
+      "path": "assets/fonts/KaTeX_Fraktur-Regular.woff2",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Fraktur-Regular.woff2",
+      "size": 11316
+    },
+    {
+      "path": "assets/fonts/KaTeX_Fraktur-Regular.woff",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Fraktur-Regular.woff",
+      "size": 13208
+    },
+    {
+      "path": "assets/fonts/KaTeX_Fraktur-Regular.ttf",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Fraktur-Regular.ttf",
+      "size": 19572
+    },
+    {
+      "path": "assets/fonts/KaTeX_Main-Bold.woff2",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Main-Bold.woff2",
+      "size": 25324
+    },
+    {
+      "path": "assets/fonts/KaTeX_Main-BoldItalic.woff2",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Main-BoldItalic.woff2",
+      "size": 16780
+    },
+    {
+      "path": "assets/fonts/KaTeX_Main-Bold.woff",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Main-Bold.woff",
+      "size": 29912
+    },
+    {
+      "path": "assets/fonts/KaTeX_Main-BoldItalic.woff",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Main-BoldItalic.woff",
+      "size": 19412
+    },
+    {
+      "path": "assets/fonts/KaTeX_Main-Bold.ttf",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Main-Bold.ttf",
+      "size": 51336
+    },
+    {
+      "path": "assets/fonts/KaTeX_Main-BoldItalic.ttf",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Main-BoldItalic.ttf",
+      "size": 32968
+    },
+    {
+      "path": "assets/fonts/KaTeX_Main-Italic.woff2",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Main-Italic.woff2",
+      "size": 16988
+    },
+    {
+      "path": "assets/fonts/KaTeX_Main-Italic.ttf",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Main-Italic.ttf",
+      "size": 33580
+    },
+    {
+      "path": "assets/fonts/KaTeX_Main-Italic.woff",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Main-Italic.woff",
+      "size": 19676
+    },
+    {
+      "path": "assets/fonts/KaTeX_Main-Regular.woff",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Main-Regular.woff",
+      "size": 30772
+    },
+    {
+      "path": "assets/fonts/KaTeX_Main-Regular.woff2",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Main-Regular.woff2",
+      "size": 26272
+    },
+    {
+      "path": "assets/fonts/KaTeX_Math-BoldItalic.woff2",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Math-BoldItalic.woff2",
+      "size": 16400
+    },
+    {
+      "path": "assets/fonts/KaTeX_Main-Regular.ttf",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Main-Regular.ttf",
+      "size": 53580
+    },
+    {
+      "path": "assets/fonts/KaTeX_Math-BoldItalic.ttf",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Math-BoldItalic.ttf",
+      "size": 31196
+    },
+    {
+      "path": "assets/fonts/KaTeX_Math-Italic.woff",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Math-Italic.woff",
+      "size": 18748
+    },
+    {
+      "path": "assets/fonts/KaTeX_Math-BoldItalic.woff",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Math-BoldItalic.woff",
+      "size": 18668
+    },
+    {
+      "path": "assets/fonts/KaTeX_Math-Italic.woff2",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Math-Italic.woff2",
+      "size": 16440
+    },
+    {
+      "path": "assets/fonts/KaTeX_SansSerif-Bold.woff",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_SansSerif-Bold.woff",
+      "size": 14408
+    },
+    {
+      "path": "assets/fonts/KaTeX_SansSerif-Bold.woff2",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_SansSerif-Bold.woff2",
+      "size": 12216
+    },
+    {
+      "path": "assets/fonts/KaTeX_SansSerif-Bold.ttf",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_SansSerif-Bold.ttf",
+      "size": 24504
+    },
+    {
+      "path": "assets/fonts/KaTeX_Math-Italic.ttf",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Math-Italic.ttf",
+      "size": 31308
+    },
+    {
+      "path": "assets/fonts/KaTeX_SansSerif-Italic.woff2",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_SansSerif-Italic.woff2",
+      "size": 12028
+    },
+    {
+      "path": "assets/fonts/KaTeX_SansSerif-Italic.woff",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_SansSerif-Italic.woff",
+      "size": 14112
+    },
+    {
+      "path": "assets/fonts/KaTeX_SansSerif-Italic.ttf",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_SansSerif-Italic.ttf",
+      "size": 22364
+    },
+    {
+      "path": "assets/fonts/KaTeX_SansSerif-Regular.woff2",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_SansSerif-Regular.woff2",
+      "size": 10344
+    },
+    {
+      "path": "assets/fonts/KaTeX_SansSerif-Regular.woff",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_SansSerif-Regular.woff",
+      "size": 12316
+    },
+    {
+      "path": "assets/fonts/KaTeX_Script-Regular.woff2",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Script-Regular.woff2",
+      "size": 9644
+    },
+    {
+      "path": "assets/fonts/KaTeX_SansSerif-Regular.ttf",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_SansSerif-Regular.ttf",
+      "size": 19436
+    },
+    {
+      "path": "assets/fonts/KaTeX_Script-Regular.woff",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Script-Regular.woff",
+      "size": 10588
+    },
+    {
+      "path": "assets/fonts/KaTeX_Size1-Regular.woff2",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Size1-Regular.woff2",
+      "size": 5468
+    },
+    {
+      "path": "assets/fonts/KaTeX_Size1-Regular.ttf",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Size1-Regular.ttf",
+      "size": 12228
+    },
+    {
+      "path": "assets/fonts/KaTeX_Size1-Regular.woff",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Size1-Regular.woff",
+      "size": 6496
+    },
+    {
+      "path": "assets/fonts/KaTeX_Script-Regular.ttf",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Script-Regular.ttf",
+      "size": 16648
+    },
+    {
+      "path": "assets/fonts/KaTeX_Size2-Regular.ttf",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Size2-Regular.ttf",
+      "size": 11508
+    },
+    {
+      "path": "assets/fonts/KaTeX_Size2-Regular.woff2",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Size2-Regular.woff2",
+      "size": 5208
+    },
+    {
+      "path": "assets/fonts/KaTeX_Size3-Regular.woff2",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Size3-Regular.woff2",
+      "size": 3624
+    },
+    {
+      "path": "assets/fonts/KaTeX_Size2-Regular.woff",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Size2-Regular.woff",
+      "size": 6188
+    },
+    {
+      "path": "assets/fonts/KaTeX_Size3-Regular.ttf",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Size3-Regular.ttf",
+      "size": 7588
+    },
+    {
+      "path": "assets/fonts/KaTeX_Size3-Regular.woff",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Size3-Regular.woff",
+      "size": 4420
+    },
+    {
+      "path": "assets/fonts/KaTeX_Size4-Regular.woff2",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Size4-Regular.woff2",
+      "size": 4928
+    },
+    {
+      "path": "assets/fonts/KaTeX_Size4-Regular.woff",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Size4-Regular.woff",
+      "size": 5980
+    },
+    {
+      "path": "assets/fonts/KaTeX_Size4-Regular.ttf",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Size4-Regular.ttf",
+      "size": 10364
+    },
+    {
+      "path": "assets/fonts/KaTeX_Typewriter-Regular.woff",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Typewriter-Regular.woff",
+      "size": 16028
+    },
+    {
+      "path": "assets/fonts/KaTeX_Typewriter-Regular.woff2",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Typewriter-Regular.woff2",
+      "size": 13568
+    },
+    {
+      "path": "assets/fonts/KaTeX_Typewriter-Regular.ttf",
+      "type": "font",
+      "source": "https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/fonts/KaTeX_Typewriter-Regular.ttf",
+      "size": 27556
+    },
+    {
+      "path": "assets/fonts/fa-regular-400.woff2",
+      "type": "font",
+      "source": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/webfonts/fa-regular-400.woff2",
+      "size": 25392
+    },
+    {
+      "path": "assets/fonts/fa-regular-400.ttf",
+      "type": "font",
+      "source": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/webfonts/fa-regular-400.ttf",
+      "size": 67860
+    },
+    {
+      "path": "assets/fonts/fa-brands-400.woff2",
+      "type": "font",
+      "source": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/webfonts/fa-brands-400.woff2",
+      "size": 117852
+    },
+    {
+      "path": "assets/fonts/fa-brands-400.ttf",
+      "type": "font",
+      "source": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/webfonts/fa-brands-400.ttf",
+      "size": 209128
+    },
+    {
+      "path": "assets/fonts/fa-v4compatibility.woff2",
+      "type": "font",
+      "source": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/webfonts/fa-v4compatibility.woff2",
+      "size": 4792
+    },
+    {
+      "path": "assets/fonts/fa-v4compatibility.ttf",
+      "type": "font",
+      "source": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/webfonts/fa-v4compatibility.ttf",
+      "size": 10832
+    },
+    {
+      "path": "assets/fonts/fa-solid-900.ttf",
+      "type": "font",
+      "source": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/webfonts/fa-solid-900.ttf",
+      "size": 420332
+    },
+    {
+      "path": "assets/fonts/fa-solid-900.woff2",
+      "type": "font",
+      "source": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/webfonts/fa-solid-900.woff2",
+      "size": 156400
+    },
+    {
+      "path": "index.html",
+      "type": "html",
+      "source": "inline",
+      "size": 27636
+    },
+    {
+      "path": "assets/css/styles.css",
+      "type": "css-core",
+      "source": "inline",
+      "size": 13178
+    },
+    {
+      "path": "assets/js/app.js",
+      "type": "js-core",
+      "source": "inline",
+      "size": 88734
+    }
+  ]
+}
